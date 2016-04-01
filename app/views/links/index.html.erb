@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Dreddit</h1>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Summary</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @links.each do |link| %>
+      <tr>
+        <td><a href= "<%= link.url %>"><%= link.title.show %></a></td>
+        <td><%= link.summary %></td>
+        <td><%= link.user.name %></td>
+        <td><%= link.votes.size %></td>
+        <td><%= link_to "upvote", link_votes_path(link), method: :post %></td>
+        <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Link', new_link_path %>
