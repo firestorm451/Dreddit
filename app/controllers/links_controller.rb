@@ -5,11 +5,14 @@ class LinksController < ApplicationController
   # GET /links.json
   def index
     @links = Link.all
+    @links = Link.order("votes_count DESC").page(params[:page]).per(20)
   end
 
   # GET /links/1
   # GET /links/1.json
   def show
+    @link.votes.create
+    redirect_to @link.url
   end
 
   # GET /links/new
@@ -28,6 +31,7 @@ class LinksController < ApplicationController
     if @link.save
       redirect_to root_url
     else
+      Vote.create!(link_id: vote_link.id, value: 1)
       render :new
     end
   end
@@ -54,6 +58,12 @@ class LinksController < ApplicationController
       format.html { redirect_to links_url, notice: 'Link was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def upvote
+    @link = Link.find(params[:id])
+    @link.votes.create
+    redirect_to root_url
   end
 
   private

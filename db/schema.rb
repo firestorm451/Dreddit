@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20160401160201) do
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "votes_count"
+    t.integer  "votes_count", default 0
   end
 
   add_index "links", ["user_id"], name: "index_links_on_user_id", using: :btree

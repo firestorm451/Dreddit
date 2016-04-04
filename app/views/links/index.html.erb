@@ -16,7 +16,7 @@
   <tbody>
     <% @links.each do |link| %>
       <tr>
-        <td><a href= "<%= link.url %>"><%= link.title.show %></a></td>
+        <td><%= link_to link.title, link %></td>
         <td><%= link.summary %></td>
         <td><%= link.user.name %></td>
         <td><%= link.votes.size %></td>

@@ -6,4 +6,24 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Link.create!(...)
+
+5.times do
+  User.create!(
+  name: Faker::StarWars.character
+  )
+end
+
+20.times do
+  Link.create!(
+  title: Faker::Book.title,
+  url:   Faker::Internet.url,
+  summary: Faker::Lorem.sentence,
+  user: User.order("RANDOM()").first
+  )
+end
+
+1000.times do
+  Vote.create!(
+  link_id: Link.find((6..25).to_a.sample).id
+  )
+end
