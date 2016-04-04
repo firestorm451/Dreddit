@@ -31,7 +31,6 @@ class LinksController < ApplicationController
     if @link.save
       redirect_to root_url
     else
-      Vote.create!(link_id: vote_link.id, value: 1)
       render :new
     end
   end
