@@ -22,10 +22,6 @@
     <%= f.label :summary %><br>
     <%= f.text_field :summary %>
   </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.select :user_id, User.all.map { |usr| [usr.name, usr.id] }, include_blank: "None" %>
-  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
