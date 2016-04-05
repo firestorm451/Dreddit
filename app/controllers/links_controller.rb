@@ -1,6 +1,6 @@
 class LinksController < ApplicationController
   before_action :set_link, only: [:show, :edit, :update, :destroy]
-
+  before_action :require_user, only: [:create, :new]
   # GET /links
   # GET /links.json
   def index
