@@ -9,14 +9,17 @@
 
 5.times do
   User.create!(
-  name: Faker::StarWars.character
+  name: Faker::StarWars.character,
+  email: Faker::Internet.safe_email,
+  password_digest: Faker::Internet.password(8),
+  bio: Faker::Hipster.sentence
   )
 end
 
 20.times do
   Link.create!(
   title: Faker::Book.title,
-  url:   Faker::Internet.url,
+  url: Faker::Internet.url,
   summary: Faker::Lorem.sentence,
   user: User.order("RANDOM()").first
   )
@@ -24,6 +27,6 @@ end
 
 1000.times do
   Vote.create!(
-  link_id: Link.find((6..25).to_a.sample).id
+  link_id: Link.find((1..20).to_a.sample).id
   )
 end

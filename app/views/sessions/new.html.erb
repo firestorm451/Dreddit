@@ -1,0 +1,8 @@
+<%= simple_form_for :session, url: login_create_path do |f| %>
+  <%= f.label :email %>
+  <%= f.email_field :email, class: 'form-control' %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password, class: 'form-control' %>
+  <%= f.submit %>
+<% end %>

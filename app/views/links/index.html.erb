@@ -18,7 +18,7 @@
       <tr>
         <td><%= link_to link.title, link %></td>
         <td><%= link.summary %></td>
-        <td><%= link.user.name %></td>
+        <td><%= link_to link.user.name, link.user %></td>
         <td><%= link.votes.size %></td>
         <td><%= link_to "upvote", link_votes_path(link), method: :post %></td>
         <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -30,3 +30,15 @@
 <br>
 
 <%= link_to 'New Link', new_link_path %>
+<% provide(:title, "Log in") %>
+<h1>Log in</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+      <%= link_to "Log in", login_path, class: "btn btn-primary" %>
+      <%= link_to "Logout", logout_path, method: :delete %>
+
+    <p>New user? <%= link_to "Sign up now!", new_user_path %></p>
+  </div>
+</div>
