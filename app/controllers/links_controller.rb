@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-  before_action :set_link, only: [:show, :edit, :update, :destroy]
+  before_action :set_link, only: [:show, :edit, :update, :destroy, :click]
   before_action :require_user, only: [:create, :new]
   # GET /links
   # GET /links.json
@@ -10,6 +10,10 @@ class LinksController < ApplicationController
   # GET /links/1
   # GET /links/1.json
   def show
+    @comment = Comment.new
+  end
+
+  def click
     @link.votes.create(user: current_user)
     redirect_to @link.url
   end

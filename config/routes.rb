@@ -2,9 +2,13 @@ Rails.application.routes.draw do
   resources :links, only: [:index, :new, :create]
 
   resources :links do
-    resources :votes
+    member do
+      get 'click'
+    end
+    resources :votes, only: [:create, :destroy]
+    resources :comments
   end
-
+  resources :comments
   resources :users
 
   get    '/login'   => 'sessions#new', as: :login

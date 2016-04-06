@@ -1,0 +1,18 @@
+<%= simple_form_for @comment do |f| %>
+	<%= f.input :body %>
+	<%= f.button :submit %>
+<% end %>
+
+<%= div_for(@comment) do %>
+	<div class="comments_wrapper">
+		<div class="pull-left">
+			<p class="lead"><%= @comment.body %></p>
+		</div>
+
+		<div class="btn-group pull-right">
+			<% if @comment.user_id == current_user -%>
+				<%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-default" %>
+			<% end %>
+		</div>
+	</div>
+<% end %>
