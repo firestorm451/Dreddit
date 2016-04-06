@@ -8,7 +8,6 @@ Rails.application.routes.draw do
     resources :votes, only: [:create, :destroy]
     resources :comments
   end
-  resources :comments
   resources :users
 
   get    '/login'   => 'sessions#new', as: :login

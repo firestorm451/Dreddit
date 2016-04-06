@@ -1,5 +1,9 @@
 class CommentsController < ApplicationController
-  before_action :require_user
+  before_action :set_comment, only: :show
+  before_action :require_user, only: [:create, :destroy]
+
+  def show
+  end
 
   def create
     @link = Link.find(params[:link_id])

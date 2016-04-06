@@ -1,2 +1,2 @@
 <%= simple_format(comment.body) %>
-<p class="meta">Posted by <%= comment.user.name %> on <%= comment.created_at.to_date.to_s %></p>
+<p class="meta">Posted by <%= comment.user.name %> on <%= link_to comment.created_at.to_date.to_s, link_comment_path(@link, comment) %></p>
