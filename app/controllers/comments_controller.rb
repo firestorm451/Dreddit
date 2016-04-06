@@ -1,10 +1,17 @@
 class CommentsController < ApplicationController
-  before_action :comment_link, only: [:destroy]
+  before_action :require_user
 
   def create
-    @comment = Comment.new(comment_params)
-    @comment.user_id = current_user_id
-    redirect_to root_url
+    @link = Link.find(params[:link_id])
+    @comment = @link.comments.new(comment_params)
+    @comment.user = current_user
+    if @comment.save
+      flash[:success] = "That's what the internet needs, more comments."
+      redirect_to :back
+    else
+      @link = Link.find(params[:comment][:link_id])
+      render template: 'links/show'
+    end
   end
 
   def destroy
@@ -22,6 +29,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:body, :link_id, :user_id)
+    params.require(:comment).permit(:body)
   end
 end

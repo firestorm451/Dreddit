@@ -1,6 +1,6 @@
-<%= simple_form_for @comment do |f| %>
+<%= simple_form_for [@link, @comment] do |f| %>
 	<%= f.input :body %>
-	<%= f.button :submit %>
+	<%= f.button :submit, class: 'btn btn-primary' %>
 <% end %>
 
 <%= div_for(@comment) do %>
